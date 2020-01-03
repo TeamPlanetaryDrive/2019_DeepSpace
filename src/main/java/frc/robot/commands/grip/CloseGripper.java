@@ -5,49 +5,43 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.lift;
+package frc.robot.commands.grip;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
-// manual lift - uses input from button 9 (while held) and the z axis (actual speed, which is reduced by half)
-
-public class ManualLift extends Command {
-  public ManualLift() {
+public class CloseGripper extends Command {
+  public CloseGripper() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.Elevator);
+    requires(Robot.Grip);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.Elevator.disable();
+    Robot.Grip.closeGripper();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.Elevator.liftMove(-RobotMap.leftJoystick.getZ() / 2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return !RobotMap.button9_left.get();
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.Elevator.liftMove(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.Elevator.liftMove(0);
   }
 }
