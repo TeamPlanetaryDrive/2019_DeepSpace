@@ -46,7 +46,7 @@ public class Lift extends PIDSubsystem {
 
   // inherited methods
   protected double returnPIDInput() {
-    return RobotMap.liftEncoder.getDistance(); // returns the sensor value that is providing the feedback for the system
+    return 23423; // not the actual value; supposed to return the sensor value
   }
 
   protected void usePIDOutput(double output) {

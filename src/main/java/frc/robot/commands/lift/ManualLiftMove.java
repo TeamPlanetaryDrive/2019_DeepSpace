@@ -8,13 +8,14 @@
 package frc.robot.commands.lift;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class PIDLift extends Command {
+public class ManualLiftMove extends Command {
   public double setPoint;
 
-  public PIDLift() {
+  public ManualLiftMove() {
     requires(Robot.Elevator);
     setPoint = 0;
   }
@@ -22,28 +23,27 @@ public class PIDLift extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println(RobotMap.liftEncoder.getDistance() + "Encoder");
-    // descend
+    // System.out.println(RobotMap.liftEncoder.getDistance() + "Encoder");
     if (RobotMap.leftJoystick.getTrigger()) {
       Robot.Elevator.enable();
-      System.out.println("LeftTrigger - descend");
-      setPoint += ((-RobotMap.rightJoystick.getZ()) - 1) / 200;
+      System.out.println("leftTrigger reached");
+      setPoint += ((-RobotMap.rightJoystick.getZ())-1) / 200;
       Robot.Elevator.setSetpoint(setPoint);
       System.out.println(setPoint);
     }
-    // ascend
-    else if (RobotMap.rightJoystick.getTrigger()) {
+    if (RobotMap.rightJoystick.getTrigger()) {
       Robot.Elevator.enable();
-      System.out.println("RightTrigger - ascend");
+      System.out.println("RightTrigger reached");
       setPoint += ((RobotMap.rightJoystick.getZ() + 1)) / 200;
       Robot.Elevator.setSetpoint(setPoint);
       System.out.println(setPoint);
+     
     }
   }
 

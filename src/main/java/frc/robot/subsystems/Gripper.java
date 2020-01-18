@@ -17,7 +17,7 @@ import frc.robot.commands.grip.*;
 
 //Use this for opening and closing the grippers onto the plate and the ball
 public class Gripper extends Subsystem {
-  public DoubleSolenoid testSolenoid = new DoubleSolenoid(RobotMap.GRIPPER_CHANNEL_A, RobotMap.GRIPPER_CHANNEL_B);
+  DoubleSolenoid testSolenoid = new DoubleSolenoid(RobotMap.GRIPPER_CHANNEL_A, RobotMap.GRIPPER_CHANNEL_B);
   private boolean state;
 
   public void initDefaultCommand() {

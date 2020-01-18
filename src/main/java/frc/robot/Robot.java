@@ -17,7 +17,6 @@ import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -32,6 +31,7 @@ public class Robot extends TimedRobot {
   public static Lift Elevator; // elevator for gripper
   public static Vision Cameras; // used for the vision class as needed
   public static OI m_oi;
+  public static RobotMap map = new RobotMap();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -47,6 +47,7 @@ public class Robot extends TimedRobot {
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
    */
+
   public void robotInit() {
     RobotMap.init();
     Drive = new DriveTrain();
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
   /**
    * This function is called periodically during autonomous.
    */
+  //comment
   @Override
   public void autonomousPeriodic() {
     Scheduler.getInstance().run();
@@ -128,15 +130,16 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+    SmartDashboard.putData("Encoder", m_chooser);
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    SmartDashboard.putData("Encoder", m_chooser);
   }
 
   /**
    * This function is called periodically during operator control.
    */
+
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
   }
