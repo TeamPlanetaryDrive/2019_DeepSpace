@@ -21,7 +21,6 @@ public class OI {
     RobotMap.button2_left.whenPressed(new OpenGripper());
     RobotMap.button2_right.whenPressed(new CloseGripper());
     RobotMap.button6_left.whenPressed(new StopGripper());
-    RobotMap.button8_right.whenPressed(new PartialPneumaticClose());
     // RobotMap.button10_left.whenPressed(new CountEncoderValue());
     
     // automated lift controls

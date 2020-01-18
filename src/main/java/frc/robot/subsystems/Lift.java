@@ -10,9 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.lift.LiftToLevel;
-import frc.robot.commands.lift.ManualLift;
-import frc.robot.commands.lift.PIDLift;
 
 //use to move the grippers up and down on the elevator
 public class Lift extends PIDSubsystem {
@@ -21,13 +18,13 @@ public class Lift extends PIDSubsystem {
     super("Lift", 0.25, 0.01, 0);
     //super("Lift", 5.75, 0.000001, 0);
 
-    setOutputRange(-0.5, 0.75);
-    setAbsoluteTolerance(1);
-    getPIDController().setContinuous(false);
-    RobotMap.liftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-    RobotMap.liftEncoder.setReverseDirection(false);
-    setInputRange(0, 30.85);
-    setSetpoint(0);
+    // setOutputRange(-0.5, 0.75);
+    // setAbsoluteTolerance(1);
+    // getPIDController().setContinuous(false);
+    // RobotMap.liftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+    // RobotMap.liftEncoder.setReverseDirection(false);
+    // setInputRange(0, 30.85);
+    // setSetpoint(0);
   }
 
   public void resetPosition(){
@@ -46,20 +43,18 @@ public class Lift extends PIDSubsystem {
 
   // inherited methods
   protected double returnPIDInput() {
-    return 23423; // not the actual value; supposed to return the sensor value
+    return 23423; 
   }
 
   protected void usePIDOutput(double output) {
-    liftMove(output); // this is where the computed output value from the PIDController is applied to the motor
+    liftMove(output);
   }
 
-  // setting effort value to lift motor
-  // also limiting the effort values to ensure bot doesn't exceed or fall below max and min values
   public void liftMove(double speed) {
     // if( ((getPosition() < 0) && (speed < 0)) || ((getPosition() > 33.71) && (speed > 0)) )
     //   RobotMap.lift.set(0);
     // else
-      RobotMap.lift.set(speed);
+    RobotMap.lift.set(speed);
   }
 
 }

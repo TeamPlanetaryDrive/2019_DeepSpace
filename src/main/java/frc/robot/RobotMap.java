@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -53,7 +54,7 @@ public class RobotMap {
         // RIGHT_ENC_CHANNEL_A = 2,
         // RIGHT_ENC_CHANNEL_B = 3;
 
-        public static final boolean GRIPPER_EXTEND = true, GRIPPER_RETRACT = false;
+        // public static final boolean GRIPPER_EXTEND = true, GRIPPER_RETRACT = false;
         public static boolean pneumaticsStart = false;
 
         // motors
@@ -61,6 +62,8 @@ public class RobotMap {
         public static SpeedController lift;
 
         public static boolean liftStart = false;
+
+        public static Encoder liftEncoder;
 
         // joystick and buttons
         public static final int LEFT_JOYSTICK_PORT = 0, RIGHT_JOYSTICK_PORT = 1;
@@ -100,7 +103,7 @@ public class RobotMap {
                 button5_right = new JoystickButton(rightJoystick, 5);
                 button8_right = new JoystickButton(rightJoystick, 8);
 
-                // lift encoder and motor setup
+                // lift mechanism setup
                 // liftEncoder = new Encoder(LIFT_ENC_CHANNEL_A, LIFT_ENC_CHANNEL_B);
                 // liftEncoder.setDistancePerPulse(distancePerPulse);
                 // liftEncoder.reset();

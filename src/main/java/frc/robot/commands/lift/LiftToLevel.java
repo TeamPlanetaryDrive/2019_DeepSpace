@@ -9,7 +9,6 @@ package frc.robot.commands.lift;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 
 public class LiftToLevel extends Command {
   // this array represents all the levels that we can lift to.

@@ -10,7 +10,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.RobotMap;
-import frc.robot.commands.grip.*;
 
 // use double solenoids
 //use compressor
@@ -39,12 +38,10 @@ public class Gripper extends Subsystem {
     // // DoubleSolenoid.Value.kReverse.
   }
 
-  // opens gripper
   public void openGripper() {
     testSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
-  // closes gripper
   public void closeGripper() {
     testSolenoid.set(DoubleSolenoid.Value.kForward);
   }
@@ -52,4 +49,5 @@ public class Gripper extends Subsystem {
   public void pistonOff() {
     testSolenoid.set(DoubleSolenoid.Value.kOff);
   }
+  
 }
