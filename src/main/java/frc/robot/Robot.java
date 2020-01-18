@@ -17,6 +17,7 @@ import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -26,12 +27,11 @@ import frc.robot.OI;
  */
 public class Robot extends TimedRobot {
 
-  public static DriveTrain Drive;// could be redundent , if we delete drivetrain get rid of this
-  public static Gripper Grip; // testing pnuematics, change name later
-  public static Lift Elevator; // elevator for gripper
-  public static Vision Cameras; // used for the vision class as needed
+  public static DriveTrain Drive;
+  public static Gripper Grip;
+  public static Lift Elevator;
+  public static Vision Cameras;
   public static OI m_oi;
-  public static RobotMap map = new RobotMap();
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
