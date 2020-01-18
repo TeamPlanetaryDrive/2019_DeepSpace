@@ -25,7 +25,7 @@ public class RobotMovement extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.Drive.drive(-0.7*RobotMap.leftJoystick.getY(), -0.7*RobotMap.rightJoystick.getY());
+    Robot.Drive.drive(-0.65*RobotMap.leftJoystick.getY(), -0.65*RobotMap.rightJoystick.getY());
   }
 
   // Make this return true when this Command no longer needs to run execute()

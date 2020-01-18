@@ -31,21 +31,21 @@ public class Gripper extends Subsystem {
   }
 
   public void update() {
-    if (state == RobotMap.GRIPPER_EXTEND && RobotMap.pneumaticsStart) {
-      pullPiston();
-    } else {
-      pushPiston();
-    }
-    // DoubleSolenoid.Value.kReverse.
+    // if (state == RobotMap.GRIPPER_EXTEND && RobotMap.pneumaticsStart) {
+    //   pullPiston();
+    // } else {
+    //   pushPiston();
+    // }
+    // // DoubleSolenoid.Value.kReverse.
   }
 
   // opens gripper
-  public void pullPiston() {
+  public void openGripper() {
     testSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   // closes gripper
-  public void pushPiston() {
+  public void closeGripper() {
     testSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 

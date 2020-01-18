@@ -22,14 +22,13 @@ public class manualMotorLift extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.Elevator.disable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.Elevator.disable();
-    Robot.Elevator.liftMove(RobotMap.leftJoystick.getZ()/2);
-    System.out.println(RobotMap.leftJoystick.getZ()/2);
+    Robot.Elevator.liftMove(-RobotMap.leftJoystick.getZ() / 2);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,11 +40,13 @@ public class manualMotorLift extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.Elevator.liftMove(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    Robot.Elevator.liftMove(0);
   }
 }
