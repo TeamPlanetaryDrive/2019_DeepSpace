@@ -20,7 +20,7 @@ public class CountEncoderValue extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("target: " + Robot.Elevator.getSetpoint() + ", current: " + Robot.Elevator.getPosition());
+    // System.out.println("target: " + Robot.Elevator.getSetpoint() + ", current: " + Robot.Elevator.getPosition());
   }
 
   // Called repeatedly when this Command is scheduled to run

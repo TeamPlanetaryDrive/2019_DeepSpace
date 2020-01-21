@@ -18,7 +18,7 @@ public class StopLift extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.Elevator.setSetpoint(Robot.Elevator.getPosition());
+    // Robot.Elevator.setSetpoint(Robot.Elevator.getPosition());
   }
 
   // Called repeatedly when this Command is scheduled to run

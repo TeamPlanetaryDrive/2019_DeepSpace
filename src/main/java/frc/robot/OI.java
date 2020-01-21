@@ -7,8 +7,6 @@
 package frc.robot;
 
 import frc.robot.commands.lift.*;
-import frc.robot.commands.CountEncoderValue;
-import frc.robot.commands.ResetLiftEncoder;
 import frc.robot.commands.grip.*;
 
 /**
@@ -17,22 +15,25 @@ import frc.robot.commands.grip.*;
  */
 public class OI {
   public OI() {
-    // Gripper controls (button 2 left is open, button 2 right is close)
+    // gripper controls (button 2 left is open, button 2 right is close)
     RobotMap.button2_left.whenPressed(new OpenGripper());
     RobotMap.button2_right.whenPressed(new CloseGripper());
     RobotMap.button6_left.whenPressed(new StopGripper());
     // RobotMap.button10_left.whenPressed(new CountEncoderValue());
     
+    // teleop lift controls
+    RobotMap.button8_left.whileHeld(new ManualLift());
+    
     // automated lift controls
-    RobotMap.button8_left.whenPressed(new LiftToLevel(0));
-    RobotMap.button4_left.whenPressed(new LiftToLevel(1));
-    RobotMap.button3_left.whenPressed(new LiftToLevel(2));
-    RobotMap.button5_left.whenPressed(new LiftToLevel(3));
-    RobotMap.button4_right.whenPressed(new LiftToLevel(4));
-    RobotMap.button3_right.whenPressed(new LiftToLevel(5));
-    RobotMap.button5_right.whenPressed(new LiftToLevel(6));
-
-    RobotMap.button11_left.whenPressed(new ResetLiftEncoder());
+    // RobotMap.button8_left.whenPressed(new LiftToLevel(0));
+    // RobotMap.button4_left.whenPressed(new LiftToLevel(1));
+    // RobotMap.button3_left.whenPressed(new LiftToLevel(2));
+    // RobotMap.button5_left.whenPressed(new LiftToLevel(3));
+    // RobotMap.button4_right.whenPressed(new LiftToLevel(4));
+    // RobotMap.button3_right.whenPressed(new LiftToLevel(5));
+    // RobotMap.button5_right.whenPressed(new LiftToLevel(6));
+    // RobotMap.button11_left.whenPressed(new ResetLiftEncoder());
 
   }
+
 }

@@ -7,16 +7,16 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.PIDSourceType;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
+// import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.lift.ManualLift;
 
-//use to move the grippers up and down on the elevator
-public class Lift extends PIDSubsystem {
+public class Lift extends Subsystem {
 
   public Lift() {
-    super("Lift", 0.25, 0.01, 0);
-    //super("Lift", 5.75, 0.000001, 0);
+    // super("Lift", 0.25, 0.01, 0);
+    // super("Lift", 5.75, 0.000001, 0);
 
     // setOutputRange(-0.5, 0.75);
     // setAbsoluteTolerance(1);
@@ -38,23 +38,23 @@ public class Lift extends PIDSubsystem {
 
   public void initDefaultCommand() {
     //setDefaultCommand(new PIDLift());
-    //setDefaultCommand(new ManualLift());
+    setDefaultCommand(new ManualLift());
   }
 
   // inherited methods
-  protected double returnPIDInput() {
-    return 23423; 
-  }
+  // protected double returnPIDInput() {
+  //   return 23423; 
+  // }
 
-  protected void usePIDOutput(double output) {
-    liftMove(output);
-  }
+  // protected void usePIDOutput(double output) {
+  //   liftMove(output);
+  // }
 
   public void liftMove(double speed) {
     // if( ((getPosition() < 0) && (speed < 0)) || ((getPosition() > 33.71) && (speed > 0)) )
     //   RobotMap.lift.set(0);
     // else
-    RobotMap.lift.set(speed);
+    RobotMap.lift.set(0.7 * speed);
   }
 
 }

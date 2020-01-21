@@ -29,19 +29,20 @@ public class LiftToLevel extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.Elevator.enable();
+    // Robot.Elevator.enable();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.Elevator.setSetpoint(LIFT_PRESETS[level_preset]);
+    // Robot.Elevator.setSetpoint(LIFT_PRESETS[level_preset]);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return Robot.Elevator.onTarget();
+    // return Robot.Elevator.onTarget();
+    return true;
   }
 
   // Called once after isFinished returns true
