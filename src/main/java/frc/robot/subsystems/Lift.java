@@ -38,7 +38,7 @@ public class Lift extends Subsystem {
 
   public void initDefaultCommand() {
     //setDefaultCommand(new PIDLift());
-    setDefaultCommand(new ManualLift());
+    //setDefaultCommand(new ManualLift());
   }
 
   // inherited methods

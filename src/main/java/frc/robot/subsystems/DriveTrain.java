@@ -26,14 +26,14 @@ public class DriveTrain extends Subsystem {
    */
 
   // Metal Robot Code
-  Talon leftMotor = new Talon(RobotMap.LEFT_MOTOR_CHANNEL);
-  Talon rightMotor = new Talon(RobotMap.RIGHT_MOTOR_CHANNEL);
+  //Talon leftMotor = new Talon(RobotMap.LEFT_MOTOR_CHANNEL);
+  //Talon rightMotor = new Talon(RobotMap.RIGHT_MOTOR_CHANNEL);
   DifferentialDrive robotDrive;
 
   public DriveTrain() {
     // calls the subsystem to let it know that it needs to be called as a subsystem
     super();
-    robotDrive = new DifferentialDrive(leftMotor, rightMotor);
+    robotDrive = new DifferentialDrive(RobotMap.lMotor, RobotMap.rMotor);
   }
 
   
