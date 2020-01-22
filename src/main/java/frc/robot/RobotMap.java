@@ -39,7 +39,7 @@ public class RobotMap {
         public static int LIFT_CHANNEL = 2;
 
         // piston based
-        public static int GRIPPER_CHANNEL_A = 0, GRIPPER_CHANNEL_B = 2;
+        public static int GRIPPER_CHANNEL_A = 4, GRIPPER_CHANNEL_B = 5;
 
         // Drive system PID Parameters
         public static final double DRIVE_PID_POSITION_KP = 2.00, // 2.00
