@@ -50,4 +50,20 @@ public class Gripper extends Subsystem {
     testSolenoid.set(DoubleSolenoid.Value.kOff);
   }
   
+  public String getMeSomeSolenoid(){
+    String forTimmy = "idk";
+    switch(testSolenoid.get()){
+      case kReverse:
+        forTimmy = "back";
+        break;
+      case kForward:
+        forTimmy = "front";
+        break;
+      case kOff:
+        forTimmy = "off";
+        break;
+    }
+    return forTimmy;
+  }
+
 }

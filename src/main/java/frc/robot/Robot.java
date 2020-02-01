@@ -38,8 +38,9 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   //network table instance variables
-  NetworkTableEntry xEntry;
-  NetworkTableEntry yEntry;
+  //NetworkTableEntry xEntry;
+  //NetworkTableEntry yEntry;
+  NetworkTableEntry gripState;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -69,9 +70,10 @@ public class Robot extends TimedRobot {
 
     //copied NetworkTable stuff
     NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    NetworkTable table = inst.getTable("datatable");
-    xEntry = table.getEntry("X");
-    yEntry = table.getEntry("Y");
+    NetworkTable table = inst.getTable("Timmy");
+    //xEntry = table.getEntry("X");
+    //yEntry = table.getEntry("Y");
+    gripState = table.getEntry("timmyGrip");
   }
 
   //NetworkTable variables
@@ -161,10 +163,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    xEntry.setDouble(x);
-    yEntry.setDouble(y);
-    x += 0.05;
-    y += 1.0;
+    //xEntry.setDouble(x);
+    //yEntry.setDouble(y);
+    //x += 0.05;
+    //y += 1.0;
+    gripState.setString(Grip.getMeSomeSolenoid());
   }
 
   /**
