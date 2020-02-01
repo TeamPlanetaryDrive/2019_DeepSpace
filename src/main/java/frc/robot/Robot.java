@@ -38,9 +38,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
 
   //network table instance variables
-  NetworkTable table;
-  double[] areas;
-  double[] defaultValue = new double[0];
+  NetworkTableEntry xEntry;
+  NetworkTableEntry yEntry;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -68,8 +67,16 @@ public class Robot extends TimedRobot {
     Grip.pistonOff();
     SmartDashboard.putData("Auto mode", m_chooser);
 
-    table = NetworkTableInstance.getDefault().getTable("GRIP/mycontoursReport");
+    //copied NetworkTable stuff
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("datatable");
+    xEntry = table.getEntry("X");
+    yEntry = table.getEntry("Y");
   }
+
+  //NetworkTable variables
+  double x = 0;
+  double y = 0;
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -154,15 +161,10 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
 
-    double[] areas = table.getEntry("area").getDoubleArray(defaultValue);
-
-    System.out.print("areas: " );
-
-    for (double area : areas) {
-      System.out.print(area + " ");
-    }
-
-    System.out.println();
+    xEntry.setDouble(x);
+    yEntry.setDouble(y);
+    x += 0.05;
+    y += 1.0;
   }
 
   /**
