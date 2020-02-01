@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2020.1.2"
+    id "edu.wpi.first.GradleRIO" version "2020.2.2"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -57,6 +57,19 @@ dependencies {
     // Enable simulation gui support. Must check the box in vscode to enable support
     // upon debugging
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
+
+    // Add ntcore-java
+    compile "edu.wpi.first.ntcore:ntcore-java:2020.2.2"
+
+    // Add wpiutil-java.
+    compile "edu.wpi.first.wpiutil:wpiutil-java:2020.2.2"
+
+    // Add ntcore-jni for runtime. We are adding all supported platforms
+    // so that our application will work on all supported platforms.
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2020.2.2:windowsx86"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2020.2.2:windowsx86-64"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2020.2.2:linuxx86-64"
+    runtime "edu.wpi.first.ntcore:ntcore-jni:2020.2.2:osxx86-64"
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
@@ -65,4 +78,8 @@ dependencies {
 jar {
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_MAIN_CLASS)
+}
+
+repositories {
+    maven { url "https://frcmaven.wpi.edu/artifactory/release/" }
 }
