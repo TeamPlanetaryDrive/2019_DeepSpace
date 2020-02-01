@@ -18,6 +18,10 @@ import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -32,6 +36,11 @@ public class Robot extends TimedRobot {
   public static Lift Elevator;
   public static Vision Cameras;
   public static OI m_oi;
+
+  //network table instance variables
+  NetworkTable table;
+  double[] areas;
+  double[] defaultValue = new double[0];
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -58,6 +67,8 @@ public class Robot extends TimedRobot {
     Cameras.init();
     Grip.pistonOff();
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    table = NetworkTableInstance.getDefault().getTable("GRIP/mycontoursReport");
   }
 
   /**
@@ -142,6 +153,16 @@ public class Robot extends TimedRobot {
 
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    double[] areas = table.getEntry("area").getDoubleArray(defaultValue);
+
+    System.out.print("areas: " );
+
+    for (double area : areas) {
+      System.out.print(area + " ");
+    }
+
+    System.out.println();
   }
 
   /**
