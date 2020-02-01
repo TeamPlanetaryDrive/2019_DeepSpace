@@ -9,13 +9,13 @@ public class TimmyAccessor {
   }
 
   public void run() {
-    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTableInstance inst = NetworkTableInstance.getDefault(); //get network table
     NetworkTable table = inst.getTable("Timmy");
     //NetworkTableEntry xEntry = table.getEntry("x");
     //NetworkTableEntry yEntry = table.getEntry("y");
     NetworkTableEntry gripState2 = table.getEntry("timmyGrip");
-    inst.startClientTeam(2856);  // where TEAM=190, 294, etc, or use inst.startClient("hostname") or similar
-    inst.startDSClient();  // recommended if running on DS computer; this gets the robot IP from the DS
+    inst.startClientTeam(2856);  
+    inst.startDSClient();  
     while (true) {
       try {
         Thread.sleep(1000);
@@ -26,7 +26,7 @@ public class TimmyAccessor {
       //double x = xEntry.getDouble(0.0);
       //double y = yEntry.getDouble(0.0);
       //System.out.println("X: " + x + " Y: " + y);
-      String harambe = gripState2.getString("your mom");
+      String harambe = gripState2.getString("your mom");//gets the string value from the network table
       System.out.println(harambe);
     }
   }
