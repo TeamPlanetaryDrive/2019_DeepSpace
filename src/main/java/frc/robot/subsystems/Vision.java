@@ -13,6 +13,7 @@ import edu.wpi.cscore.AxisCamera;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.commands.LookForBall;
 
 //use for the guidence through the camera
 public class Vision extends Subsystem {
@@ -26,11 +27,12 @@ public class Vision extends Subsystem {
 		// USB camera (default = 0)
 		UsbCamera uCamera = CameraServer.getInstance().startAutomaticCapture();
 		uCamera.setFPS(15);
-		uCamera.setResolution(320, 240);
+    uCamera.setResolution(320, 240);
+    
   }
 
   @Override
   public void initDefaultCommand() {
-
+    setDefaultCommand(new LookForBall());
   }
 }
