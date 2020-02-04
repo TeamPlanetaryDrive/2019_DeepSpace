@@ -18,6 +18,9 @@ public class LookForBall extends Command {
   NetworkTableInstance inst;
   NetworkTable table;
   NetworkTableEntry contours;
+
+  boolean close = false;
+
   public LookForBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -29,20 +32,25 @@ public class LookForBall extends Command {
   @Override
   protected void initialize() {
     inst = NetworkTableInstance.getDefault();
-    table = inst.getTable("Timmy");
-    contours = table.getEntry("/freeTimmy/area");
+    table = inst.getTable("GRIP/freeTimmy");
+    contours = table.getEntry("area");
     inst.startClientTeam(2856);  
     inst.startDSClient();  
+    System.out.println("in it in it in it");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double[] yup = {0};
+    System.out.println("ExCecuted");
+    double[] yup = {.9};
+    System.out.println(contours.getDoubleArray(yup)[0]);
     if(contours.getDoubleArray(yup).length>0 && contours.getDoubleArray(yup)[0]>1){
-      new CloseGripper();
+      Robot.Grip.closeGripper();
+      System.out.println("close?");
     }else{
-      new OpenGripper();
+      Robot.Grip.openGripper();
+      System.out.println("open?");
     }
 
   }

@@ -28,7 +28,7 @@ public class Vision extends Subsystem {
 		UsbCamera uCamera = CameraServer.getInstance().startAutomaticCapture();
 		uCamera.setFPS(15);
     uCamera.setResolution(320, 240);
-    
+    System.out.println("start");
   }
 
   @Override

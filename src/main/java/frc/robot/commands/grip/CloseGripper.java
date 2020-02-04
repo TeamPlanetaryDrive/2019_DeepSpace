@@ -20,7 +20,9 @@ public class CloseGripper extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    System.out.println("close gripper called");
     Robot.Grip.closeGripper();
+    System.out.println("gripper closed");
   }
 
   // Called repeatedly when this Command is scheduled to run
