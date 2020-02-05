@@ -44,7 +44,11 @@ public class LookForBall extends Command {
   protected void execute() {
     System.out.println("ExCecuted");
     double[] yup = {.9};
-    System.out.println(contours.getDoubleArray(yup)[0]);
+    if(contours.getDoubleArray(yup).length>0){
+      System.out.println(contours.getDoubleArray(yup)[0]);
+    }else{
+      System.out.println("no contours");
+    }
     if(contours.getDoubleArray(yup).length>0 && contours.getDoubleArray(yup)[0]>1){
       Robot.Grip.closeGripper();
       System.out.println("close?");
