@@ -8,6 +8,8 @@ package frc.robot;
 
 import frc.robot.commands.lift.*;
 import frc.robot.commands.grip.*;
+import frc.robot.commands.*;
+
 
 /**
  * This class is what binds the controls on the physical operator
@@ -23,6 +25,10 @@ public class OI {
     
     // teleop lift controls
     RobotMap.button8_left.whileHeld(new ManualLift());
+
+    // adjust aim
+    RobotMap.button3_left.whenPressed(new TurnToGoal());
+    RobotMap.button3_right.whenPressed(new TurnToGoal());
     
     // automated lift controls
     // RobotMap.button8_left.whenPressed(new LiftToLevel(0));

@@ -14,18 +14,23 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.commands.grip.*;
 
-public class LookForGoal extends Command {
+public class TurnToGoal extends Command {
   NetworkTableInstance inst;
   NetworkTable table;
-  NetworkTableEntry contours;
+  NetworkTableEntry goalPosition;
+  NetworkTableEntry goalWidth;
+  double[] defaultArray;
+  final int IMAGEWIDTH = 1280;
+  double goalX;
+  double goodRange;
 
   boolean close = false;
 
-  public LookForGoal() {
+  public TurnToGoal() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.Cameras);
-    requires(Robot.DriveTrain);
+    requires(Robot.Drive);
   }
 
   // Called just before this Command runs the first time
@@ -33,37 +38,27 @@ public class LookForGoal extends Command {
   protected void initialize() {
     inst = NetworkTableInstance.getDefault();
     table = inst.getTable("GRIP/goalContours");
-    contours = table.getEntry("area");
-    inst.startClientTeam(2856);  
-    inst.startDSClient();  
-    System.out.println("in it in it in it");
+    goalPosition = table.getEntry("centerX");
+    inst.startClientTeam(2856);
+    inst.startDSClient();
+    
+    defaultArray = new double[1];
+    defaultArray[0] = Integer.MAX_VALUE;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("ExCecuted");
-    double[] yup = {.9};
-    if(contours.getDoubleArray(yup).length>0){
-      System.out.println(contours.getDoubleArray(yup)[0]);
-    }else{
-      System.out.println("no contours");
-    }
-    if(contours.getDoubleArray(yup).length>0 && contours.getDoubleArray(yup)[0]>1){
-      // Robot.Grip.closeGripper();
-      Robot.Drive.drive(-0.1, 0);
-      System.out.println("close?");
-    }else{
-      // Robot.Grip.openGripper();
-      System.out.println("open?");
-    }
-
+    goalX = goalPosition.getDoubleArray(defaultArray)[0] - IMAGEWIDTH/2;
+    int direction = (int)(goalX/Math.abs(goalX));
+    Robot.Drive.drive(.1*direction, -0.1*direction);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    goodRange = goalWidth.getDoubleArray(defaultArray)[0]/5;
+    return goalX*2<goodRange;
   }
 
   // Called once after isFinished returns true
