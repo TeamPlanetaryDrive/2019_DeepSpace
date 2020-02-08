@@ -18,13 +18,13 @@ import frc.robot.commands.*;
 public class OI {
   public OI() {
     // gripper controls (button 2 left is open, button 2 right is close)
-    RobotMap.button2_left.whenPressed(new OpenGripper());
-    RobotMap.button2_right.whenPressed(new CloseGripper());
-    RobotMap.button6_left.whenPressed(new StopGripper());
+    // RobotMap.button2_left.whenPressed(new OpenGripper());
+    // RobotMap.button2_right.whenPressed(new CloseGripper());
+    // RobotMap.button6_left.whenPressed(new StopGripper());
     // RobotMap.button10_left.whenPressed(new CountEncoderValue());
     
     // teleop lift controls
-    RobotMap.button8_left.whileHeld(new ManualLift());
+    // RobotMap.button8_left.whileHeld(new ManualLift());
 
     // adjust aim
     RobotMap.button3_left.whenPressed(new TurnToGoal());

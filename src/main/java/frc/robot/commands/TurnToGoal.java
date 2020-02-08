@@ -20,7 +20,7 @@ public class TurnToGoal extends Command {
   NetworkTableEntry goalPosition;
   NetworkTableEntry goalWidth;
   double[] defaultArray;
-  final int IMAGEWIDTH = 1280;
+  final int IMAGEWIDTH = 320;
   double goalX;
   double goodRange;
 
@@ -42,7 +42,7 @@ public class TurnToGoal extends Command {
     goalWidth = table.getEntry("width");
     inst.startClientTeam(2856);
     inst.startDSClient();
-    
+
     defaultArray = new double[1];
     defaultArray[0] = Integer.MAX_VALUE;
   }
@@ -50,25 +50,35 @@ public class TurnToGoal extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("ran execute()" );
-    goalX = goalPosition.getDoubleArray(defaultArray)[0] - IMAGEWIDTH/2;
-    System.out.println("goalX: " + goalX);
-    int direction = (int)(goalX/Math.abs(goalX));
-    System.out.println("direction: " + direction);
-    Robot.Drive.drive(.5*direction, -0.5*direction);
-    System.out.println("rotated" );
+    if (goalPosition.getDoubleArray(defaultArray).length > 0) {
+      System.out.println("ran execute()");
+      goalX = goalPosition.getDoubleArray(defaultArray)[0] - IMAGEWIDTH / 2;
+      System.out.println("goal position: " + goalPosition.getDoubleArray(defaultArray)[0]);
+      System.out.println("image width: " + IMAGEWIDTH / 2);
+      System.out.println("goalX: " + goalX);
+      int direction = (int) (goalX / Math.abs(goalX));
+      System.out.println("direction: " + direction);
+      Robot.Drive.drive(.35 * direction, (-.35) * direction);
+      System.out.println("rotated");
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    goodRange = goalWidth.getDoubleArray(defaultArray)[0]/5;
-    return goalX*2<goodRange;
+    if (goalPosition.getDoubleArray(defaultArray).length == 0)
+      return true;
+    goodRange = goalWidth.getDoubleArray(defaultArray)[0] / 3;
+    System.out.println("goodRange: " + goodRange);
+    System.out.println("goalX*2: " + goalX * 2);
+    System.out.println("END: " + (Math.abs(goalX) * 2 < goodRange));
+    return Math.abs(goalX) * 2 < goodRange;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("END");
   }
 
   // Called when another command which requires one or more of the same

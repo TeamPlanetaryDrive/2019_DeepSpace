@@ -34,6 +34,6 @@ public class Vision extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new TurnToGoal());
+    //setDefaultCommand(new TurnToGoal());
   }
 }
