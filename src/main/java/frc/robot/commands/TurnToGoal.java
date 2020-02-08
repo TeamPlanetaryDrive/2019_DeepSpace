@@ -39,6 +39,7 @@ public class TurnToGoal extends Command {
     inst = NetworkTableInstance.getDefault();
     table = inst.getTable("GRIP/goalContours");
     goalPosition = table.getEntry("centerX");
+    goalWidth = table.getEntry("width");
     inst.startClientTeam(2856);
     inst.startDSClient();
     
@@ -49,9 +50,13 @@ public class TurnToGoal extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("ran execute()" );
     goalX = goalPosition.getDoubleArray(defaultArray)[0] - IMAGEWIDTH/2;
+    System.out.println("goalX: " + goalX);
     int direction = (int)(goalX/Math.abs(goalX));
-    Robot.Drive.drive(.1*direction, -0.1*direction);
+    System.out.println("direction: " + direction);
+    Robot.Drive.drive(.5*direction, -0.5*direction);
+    System.out.println("rotated" );
   }
 
   // Make this return true when this Command no longer needs to run execute()

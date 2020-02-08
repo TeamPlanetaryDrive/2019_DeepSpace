@@ -14,6 +14,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.LookForBall;
+import frc.robot.commands.TurnToGoal;
 
 //use for the guidence through the camera
 public class Vision extends Subsystem {
@@ -33,6 +34,6 @@ public class Vision extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new LookForBall());
+    setDefaultCommand(new TurnToGoal());
   }
 }
