@@ -55,7 +55,8 @@ public class RobotMap {
         // RIGHT_ENC_CHANNEL_B = 3;
 
         // public static final boolean GRIPPER_EXTEND = true, GRIPPER_RETRACT = false;
-        public static boolean pneumaticsStart = false;
+        // public static boolean pneumaticsStart = false;
+        public static boolean liftDone = false;
 
         // motors
         public static Victor lMotor, rMotor;

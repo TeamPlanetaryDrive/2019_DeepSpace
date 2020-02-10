@@ -24,7 +24,7 @@ public class OI {
     // RobotMap.button10_left.whenPressed(new CountEncoderValue());
     
     // teleop lift controls
-    // RobotMap.button8_left.whileHeld(new ManualLift());
+    RobotMap.button8_left.whileHeld(new ManualLift());
 
     // adjust aim
     RobotMap.button3_left.whenPressed(new TurnToGoal());

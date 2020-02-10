@@ -32,15 +32,16 @@ public class ManualLift extends Command {
   }
 
   // Called once the command ends or is interrupted.
-  // @Override
-  public void end(boolean interrupted) {
+  @Override
+  public void end() {
     Robot.Elevator.liftMove(0);
+    System.out.println("stopped");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true; //Should be different
+    return !RobotMap.button8_left.get();
   }
 
 }
