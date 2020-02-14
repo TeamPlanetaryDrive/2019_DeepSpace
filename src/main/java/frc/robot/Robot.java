@@ -17,7 +17,7 @@ import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
-
+import frc.robot.commands.auto.breakStartLine;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -44,13 +44,6 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  SendableChooser<Command> Hab_Climb_Send = new SendableChooser<>();
-  SendableChooser<Command> Drive_Send = new SendableChooser<>();
-  SendableChooser<Command> PneumaticsTest_Send = new SendableChooser<>();
-  SendableChooser<Command> Elevator_Send = new SendableChooser<>();
-  SendableChooser<Command> Cameras_Send = new SendableChooser<>();
-  SendableChooser<Command> PID_Send = new SendableChooser<>();
-  SendableChooser<Command> RobotM = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -74,6 +67,9 @@ public class Robot extends TimedRobot {
     //xEntry = table.getEntry("X");
     //yEntry = table.getEntry("Y");
     gripState = table.getEntry("timmyGrip");
+
+    m_chooser.addOption("breakStartLine", new breakStartLine());
+    m_chooser.addOption("auto2", new auto2());
   }
 
   //NetworkTable variables
@@ -123,12 +119,16 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
 
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-     * switch(autoSelected) { case "My Auto": autonomousCommand = new
-     * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-     * ExampleCommand(); break; }
-     */
+    // String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+    // switch(autoSelected) { 
+    //   case "My Auto": 
+    //   autonomousCommand = new MyAutoCommand(); 
+    //   break; 
+    //   case "Default Auto": 
+    //   default: 
+    //   autonomousCommand = new ExampleCommand(); 
+    //   break; 
+    // }
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
