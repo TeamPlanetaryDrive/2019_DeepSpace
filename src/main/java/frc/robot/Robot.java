@@ -17,6 +17,7 @@ import frc.robot.subsystems.Gripper;
 import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
+import frc.robot.commands.auto.breakStartLine;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,13 +36,6 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  SendableChooser<Command> Hab_Climb_Send = new SendableChooser<>();
-  SendableChooser<Command> Drive_Send = new SendableChooser<>();
-  SendableChooser<Command> PneumaticsTest_Send = new SendableChooser<>();
-  SendableChooser<Command> Elevator_Send = new SendableChooser<>();
-  SendableChooser<Command> Cameras_Send = new SendableChooser<>();
-  SendableChooser<Command> PID_Send = new SendableChooser<>();
-  SendableChooser<Command> RobotM = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -58,6 +52,7 @@ public class Robot extends TimedRobot {
     Cameras.init();
     Grip.pistonOff();
     SmartDashboard.putData("Auto mode", m_chooser);
+    m_chooser.addOption("breakStartLine", new breakStartLine());
   }
 
   /**
