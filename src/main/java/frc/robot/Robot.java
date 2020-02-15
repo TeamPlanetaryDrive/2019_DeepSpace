@@ -18,6 +18,9 @@ import frc.robot.subsystems.Lift;
 import frc.robot.subsystems.Vision;
 import frc.robot.OI;
 import frc.robot.commands.auto.breakStartLine;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +36,11 @@ public class Robot extends TimedRobot {
   public static Lift Elevator;
   public static Vision Cameras;
   public static OI m_oi;
+
+  //network table instance variables
+  //NetworkTableEntry xEntry;
+  //NetworkTableEntry yEntry;
+  NetworkTableEntry gripState;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -53,7 +61,21 @@ public class Robot extends TimedRobot {
     Grip.pistonOff();
     SmartDashboard.putData("Auto mode", m_chooser);
     m_chooser.addOption("breakStartLine", new breakStartLine());
+
+    //copied NetworkTable stuff
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    NetworkTable table = inst.getTable("Timmy");
+    //xEntry = table.getEntry("X");
+    //yEntry = table.getEntry("Y");
+    gripState = table.getEntry("timmyGrip");
+
+    m_chooser.addOption("breakStartLine", new breakStartLine());
+    m_chooser.addOption("auto2", new auto2());
   }
+
+  //NetworkTable variables
+  double x = 0;
+  double y = 0;
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for
@@ -142,6 +164,12 @@ public class Robot extends TimedRobot {
 
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+
+    //xEntry.setDouble(x);
+    //yEntry.setDouble(y);
+    //x += 0.05;
+    //y += 1.0;
+    gripState.setString(Grip.getMeSomeSolenoid());
   }
 
   /**

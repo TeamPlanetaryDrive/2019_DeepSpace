@@ -17,16 +17,15 @@ import frc.robot.RobotMap;
 //Use this for opening and closing the grippers onto the plate and the ball
 public class Gripper extends Subsystem {
   DoubleSolenoid testSolenoid = new DoubleSolenoid(RobotMap.GRIPPER_CHANNEL_A, RobotMap.GRIPPER_CHANNEL_B);
-  private boolean state;
 
   public void initDefaultCommand() {
     // todo: use new system
     // setDefaultCommand(new MoveGripPiston(RobotMap.GRIPPER_RETRACT));
-    state = true;
+    // state = true;
   }
 
   public void setState(boolean newState) {
-    state = newState;
+    // state = newState;
   }
 
   public void update() {
@@ -50,4 +49,20 @@ public class Gripper extends Subsystem {
     testSolenoid.set(DoubleSolenoid.Value.kOff);
   }
   
+  public String getMeSomeSolenoid(){
+    String forTimmy = "idk";
+    switch(testSolenoid.get()){
+      case kReverse:
+        forTimmy = "back";
+        break;
+      case kForward:
+        forTimmy = "front";
+        break;
+      case kOff:
+        forTimmy = "off";
+        break;
+    }
+    return forTimmy;
+  }
+
 }

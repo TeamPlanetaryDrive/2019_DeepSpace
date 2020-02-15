@@ -5,35 +5,64 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.grip;
+package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.commands.grip.*;
 
-public class CloseGripper extends Command {
-  public CloseGripper() {
+public class LookForBall extends Command {
+  NetworkTableInstance inst;
+  NetworkTable table;
+  NetworkTableEntry contours;
+
+  boolean close = false;
+
+  public LookForBall() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.Cameras);
     requires(Robot.Grip);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("close gripper called");
-    Robot.Grip.closeGripper();
-    System.out.println("gripper closed");
+    inst = NetworkTableInstance.getDefault();
+    table = inst.getTable("GRIP/freeTimmy");
+    contours = table.getEntry("area");
+    inst.startClientTeam(2856);  
+    inst.startDSClient();  
+    System.out.println("in it in it in it");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    System.out.println("ExCecuted");
+    double[] yup = {.9};
+    if(contours.getDoubleArray(yup).length>0){
+      System.out.println(contours.getDoubleArray(yup)[0]);
+    }else{
+      System.out.println("no contours");
+    }
+    if(contours.getDoubleArray(yup).length>0 && contours.getDoubleArray(yup)[0]>1){
+      Robot.Grip.closeGripper();
+      System.out.println("close?");
+    }else{
+      Robot.Grip.openGripper();
+      System.out.println("open?");
+    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true
